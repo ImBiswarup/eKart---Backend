@@ -51,6 +51,7 @@ const loginHandler = async (req, res) => {
     }
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
+
     if (!isPasswordValid) {
       return res.status(401).json({ message: "Invalid email or password." });
     }
@@ -69,7 +70,7 @@ const loginHandler = async (req, res) => {
     user.token = token;
     await user.save();
 
-    console.log(user);
+    // console.log(user);
 
     res.status(200).json({ user, message: "Login successful." });
   } catch (error) {
